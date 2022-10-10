@@ -1,35 +1,20 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { COLORS } from '../../colors';
 
+const vw = Dimensions.get('window').width / 100;
+
 const moon = {
-    size: 250,
+    size: 80*vw,
 }
 
 export const styles = StyleSheet.create({
     background: {
         backgroundColor: COLORS.background,
         flex: 1,
-    },
-    top_container: {
-        flexDirection: 'row',
-        padding: 10,
-        // borderColor: 'red', borderWidth: 1,
+        paddingTop: 5*vw,
     },
     text: {
         color: COLORS.primary,
-    },
-    moondust_container: {
-        backgroundColor: COLORS.primary,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 50,
-        height: 50,
-        borderRadius: 50/2,
-    },
-    moondust_text: {
-        color: COLORS.background,
-        fontWeight: 'bold',
-        fontSize: 24,
     },
     moon_container: {
         flex: 1,
@@ -41,5 +26,13 @@ export const styles = StyleSheet.create({
         width: moon.size,
         height: moon.size,
         borderRadius: moon.size/2,
+    },
+    bottom_container: {
+        backgroundColor: COLORS.primary,
+        width: 100*vw,
+        height: 15*vw,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
     }
 });

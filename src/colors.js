@@ -5,4 +5,7 @@ export const COLORS = {
     secondary: "#748CAB",
     wrong: "#F72C25",
     correct: '#388659',
+    roxo: '#982649',
+    comprado: '#A2D729',
+    insuficiente: "#A31621",
 }

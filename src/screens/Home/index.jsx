@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Text, Touchable, TouchableOpacity, city, View } from 'react-native';
+import { StatusBar } from '../../components/StatusBar';
 import { useStats } from '../../hooks/useStats';
 import { useStorage } from '../../hooks/useStorage';
 import { styles } from './style';
@@ -52,17 +53,17 @@ export const Home = ({ navigation }) => {
     return (
         <View style={styles.background}>
             {/* top bar container */}
-            <View style={styles.top_container}>
-                <View style={styles.moondust_container}>
-                    <Text style={styles.moondust_text}>{moondust}</Text>
-                </View>
-                <Text style={styles.text}>{moondust_per_click}/c</Text>
-                <Text style={styles.text}>{moondust_per_second}/s</Text>
-            </View>
+            <StatusBar stats={stats} />
             {/* moon container */}
             <View style={styles.moon_container}>
                 <TouchableOpacity onPress={moonClick}>
                     <View style={styles.moon}></View>
+                </TouchableOpacity>
+            </View>
+            {/* bottom container */}
+            <View style={styles.bottom_container}>
+                <TouchableOpacity style={styles.bottom_container} onPress={() => navigation.navigate('Satelite')}>
+                    <Text style={styles.moondust_text}>Satélite</Text>
                 </TouchableOpacity>
             </View>
         </View>

@@ -4,15 +4,16 @@ import { StatusBar } from 'expo-status-bar';
 import { Home } from './src/screens/Home';
 import { COLORS } from './src/colors';
 import { StatsProvider } from './src/contexts/StatsContext'
+import { Satelite } from './src/screens/Satelite';
 
 export default function App() {
 
     const Stack = createNativeStackNavigator();
     const navigator_options = {
         headerStyle: {
-            backgroundColor: COLORS.primary,
+            backgroundColor: COLORS.background,
           },
-          headerTintColor: COLORS.background,
+          headerTintColor: COLORS.primary,
           headerTitleStyle: {
             fontWeight: 'bold',
           },
@@ -21,7 +22,7 @@ export default function App() {
     };
     const home_header_options = {
         title: 'Moon Clicker',
-        // headerShown: false,
+        headerShown: false,
     };
 
     return (
@@ -33,6 +34,11 @@ export default function App() {
                         name="Home" 
                         component={Home}
                         options={home_header_options}  
+                        />
+                    <Stack.Screen 
+                        name="Satelite" 
+                        component={Satelite}
+                        // options={home_header_options}  
                         />
                 </Stack.Navigator>
             </StatsProvider>

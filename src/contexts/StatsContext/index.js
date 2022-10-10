@@ -9,7 +9,7 @@ export const StatsProvider = ({children}) => {
     const [values, setValues] = useState({
         moondust: 0,
         moondust_per_click: 1,
-        moondust_per_second: 0.1,
+        moondust_per_second: 0,
     })
 
     return (
