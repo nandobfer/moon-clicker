@@ -35,7 +35,7 @@ export const Home = ({ navigation }) => {
     useEffect(() => {
         localStorage.getData()
         .then(data => {
-            if (data.moondust) {
+            if (data) {
                 stats.setValues({...stats.values, ...data});
                 console.log(data);
             }
