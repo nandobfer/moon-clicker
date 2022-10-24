@@ -34,7 +34,17 @@ export const Satelite = ({navigation}) => {
                 type: 'moondust_per_second',
                 value: 1,
             }
-        }
+        },
+        {
+            id: 2,
+            nome: "Estação de energia",
+            valor: Math.round(config.prices[2].base * Math.pow(stats.values.upgrades[2]?.quantidade ? stats.values.upgrades[2].quantidade : 1, config.prices[2].rate)),
+            descricao: 'MD por segundo: x2',
+            mod: {
+                type: 'moondust_per_second_bonus',
+                value: 1,
+            }
+        },
     ]
 
     const onBuy = (upgrade) => {

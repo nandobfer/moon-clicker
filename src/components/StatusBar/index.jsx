@@ -24,14 +24,14 @@ export const StatusBar = ({stats}) => {
         <View style={styles.top_container}>
             <View style={styles.stats_container}>
                 <Text style={styles.text}>Por clique</Text>
-                <Text style={styles.text}>{stats.values.moondust_per_click} / c</Text>
+                <Text style={styles.text}>{stats.values.moondust_per_click * stats.values.moondust_per_click_bonus / 100} / c</Text>
             </View>
             <View style={styles.moondust_container}>
                 <Text style={styles.moondust_text}>{nFormatter(stats.values.moondust, 2)}</Text>
             </View>
             <View style={styles.stats_container}>
                 <Text style={styles.text}>Por segundo</Text>
-                <Text style={styles.text}>{stats.values.moondust_per_second} / s</Text>
+                <Text style={styles.text}>{stats.values.moondust_per_second * stats.values.moondust_per_second_bonus / 100} / s</Text>
             </View>
         </View>
     )

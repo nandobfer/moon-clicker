@@ -22,17 +22,17 @@ export const Home = ({ navigation }) => {
     const localStorage = useStorage();
 
     const moonClick = () => {
-        const new_stats = {...stats.values, moondust: moondust + moondust_per_click};
+        const new_stats = {...stats.values, moondust: moondust + (moondust_per_click * (stats.values.moondust_per_click_bonus / 100))};
         stats.setValues(new_stats);
         localStorage.setData(new_stats);
 
     }
 
     const moonPassive = () => {
-        const new_stats = {...stats.values, moondust: moondust + moondust_per_second};
+        const new_stats = {...stats.values, moondust: moondust + (moondust_per_second * (stats.values.moondust_per_second_bonus / 100))};
         stats.setValues(new_stats);
         localStorage.setData(new_stats);
-        // console.log(moondust);
+        // console.log(stats.values.moondust_per_second_multiplier);
     }
 
     // useEffect(() => {
