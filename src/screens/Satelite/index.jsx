@@ -42,7 +42,7 @@ export const Satelite = ({navigation}) => {
             descricao: 'MD por segundo: x2',
             mod: {
                 type: 'moondust_per_second_bonus',
-                value: 1,
+                value: 100,
             }
         },
     ]
