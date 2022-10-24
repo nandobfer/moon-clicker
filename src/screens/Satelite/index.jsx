@@ -84,7 +84,9 @@ export const Satelite = ({navigation}) => {
                 <StatusBar stats={stats} />
             </View>
             <View style={styles.main_container}>
-                {upgrades.map((item => {
+                {upgrades
+                .sort((a,b) => a.valor - b.valor)
+                .map((item => {
                     return (
                         <View key={item.nome} style={styles.upgrade_wrapper}>
                             <View style={styles.upgrade_container}>
