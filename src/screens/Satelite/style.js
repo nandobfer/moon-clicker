@@ -14,9 +14,13 @@ export const styles = StyleSheet.create({
         backgroundColor: COLORS.background,
         width: 90*vw,
     },
+    main_container: {
+        flex: 1,
+    },
     upgrade_wrapper: {
         flexDirection: 'row',
         borderColor: COLORS.background, borderWidth: 3,
+        borderTopWidth: 0,
         width: 90*vw,
         height: 15*vw,
         justifyContent: 'space-between',
@@ -51,5 +55,9 @@ export const styles = StyleSheet.create({
     buy_text: {
         color: COLORS.primary,
         fontWeight: 'bold',
+    },
+
+    reset_button: {
+        bottom: 0,
     }
 });

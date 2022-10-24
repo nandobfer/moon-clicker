@@ -4,18 +4,8 @@ import { useStorage } from '../../hooks/useStorage';
 import { styles } from './style';
 import { COLORS } from '../../colors';
 import { StatusBar } from '../../components/StatusBar';
+import { config } from '../../config';
 
-const upgrades = [
-    {
-        nome: "Picareta",
-        valor: 10,
-        descricao: 'MD por clique: +1',
-        mod: {
-            type: 'moondust_per_click',
-            value: 1,
-        }
-    }
-]
 
 export const Satelite = ({navigation}) => {
     const stats = useStats();
@@ -24,15 +14,47 @@ export const Satelite = ({navigation}) => {
     const moondust_per_click = stats.values.moondust_per_click;
     const moondust_per_second = stats.values.moondust_per_second;
 
+    const upgrades = [
+        {
+            id: 0,
+            nome: "Picareta",
+            valor: Math.round(10 * Math.pow(stats.values.upgrades[0].quantidade, 1.2)),
+            descricao: 'MD por clique: +1',
+            mod: {
+                type: 'moondust_per_click',
+                value: 1,
+            }
+        },
+        {
+            id: 1,
+            nome: "Drone",
+            valor: Math.round(50 * Math.pow(stats.values.upgrades[1].quantidade, 0.5)),
+            descricao: 'MD por segundo: +1',
+            mod: {
+                type: 'moondust_per_second',
+                value: 1,
+            }
+        }
+    ]
+
     const onBuy = (upgrade) => {
         const new_stats = {
             ...stats.values,
             moondust: moondust - upgrade.valor,
         };
         new_stats[upgrade.mod.type] = stats.values[upgrade.mod.type] + upgrade.mod.value;
+        new_stats.upgrades[upgrade.id].quantidade++;
 
         stats.setValues(new_stats);
         localStorage.setData(new_stats);
+    }
+
+    const resetStatus = () => {
+        const initial_stats = config.stats;
+        console.log(initial_stats);
+        localStorage.setData(initial_stats);
+        stats.setValues(initial_stats);
+        console.log(stats.values)
     }
     
     return (
@@ -40,7 +62,7 @@ export const Satelite = ({navigation}) => {
             <View style={styles.stats_container}>
                 <StatusBar stats={stats} />
             </View>
-            <View>
+            <View style={styles.main_container}>
                 {upgrades.map((item => {
                     return (
                         <View key={item.nome} style={styles.upgrade_wrapper}>
@@ -58,6 +80,9 @@ export const Satelite = ({navigation}) => {
                     )
                 }))}
             </View>
+            <TouchableOpacity style={styles.reset_button} onPress={resetStatus}>
+                <Text>Reset</Text>
+            </TouchableOpacity>
         </View>
     )
 }

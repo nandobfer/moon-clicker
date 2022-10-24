@@ -21,9 +21,9 @@ export const styles = StyleSheet.create({
         backgroundColor: COLORS.primary,
         justifyContent: 'center',
         alignItems: 'center',
-        width: 15*vw,
-        height: 15*vw,
-        borderRadius: 15*vw/2,
+        width: 20*vw,
+        height: 20*vw,
+        borderRadius: 20*vw/2,
     },
     text: {
         color: COLORS.primary,
