@@ -31,11 +31,11 @@ export const config = {
         },
         1: {
             base: 50,
-            rate: 0.9,
+            rate: 0.6,
         },
         2: {
             base: 10000,
-            rate: 2,
+            rate: 0.6,
         },
         3: {
             base: 5000,

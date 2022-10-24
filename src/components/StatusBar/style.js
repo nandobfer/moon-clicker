@@ -31,6 +31,6 @@ export const styles = StyleSheet.create({
     moondust_text: {
         color: COLORS.background,
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 18,
     },
 });
