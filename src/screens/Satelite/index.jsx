@@ -24,6 +24,15 @@ export const Satelite = ({navigation}) => {
             moondust: moondust - upgrade.valor,
         };
         new_stats[upgrade.mod.type] = stats.values[upgrade.mod.type] + upgrade.mod.value;
+
+        if (!new_stats.upgrades[upgrade.id]) {
+            new_stats.upgrades = {
+                ...new_stats.upgrades,
+                [upgrade.id]: {
+                    quantidade: 1,
+                }
+            }
+        } 
         new_stats.upgrades[upgrade.id].quantidade++;
 
         stats.setValues(new_stats);
@@ -50,7 +59,7 @@ export const Satelite = ({navigation}) => {
                     return (
                         <View key={item.nome} style={styles.upgrade_wrapper}>
                             <View style={styles.upgrade_container}>
-                                <Text style={[styles.title_text, styles.text]}>{item.nome} {stats.values.upgrades[item.id].quantidade > 1 ? `+${stats.values.upgrades[item.id].quantidade-1}` : null}</Text>
+                                <Text style={[styles.title_text, styles.text]}>{item.nome} {stats.values.upgrades[item.id]?.quantidade > 1 ? `+${stats.values.upgrades[item.id].quantidade-1}` : null}</Text>
                                 <Text style={styles.text}>{item.descricao}</Text>
                             </View>
                             <View style={[styles.cost_container, {backgroundColor: moondust >= item.valor ? COLORS.correct : COLORS.insuficiente}]}>

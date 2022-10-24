@@ -5,42 +5,7 @@ export const config = {
         moondust_per_click_bonus: 100,
         moondust_per_second: 0,
         moondust_per_second_bonus: 100,
-        upgrades: {
-            0: {
-                nome: "Picareta",
-                quantidade: 1,
-            },
-            1: {
-                nome: "Drone",
-                quantidade: 1,
-            },
-            2: {
-                nome: "Estação de energia",
-                quantidade: 1,
-            },
-            3: {
-                nome: "Braços cibernéticos",
-                quantidade: 1,
-            }
-        },
+        upgrades: {  },
     },
-    prices: {
-        0: {
-            base: 10,
-            rate: 1.2,
-        },
-        1: {
-            base: 50,
-            rate: 0.6,
-        },
-        2: {
-            base: 10000,
-            rate: 0.6,
-        },
-        3: {
-            base: 5000,
-            rate: 2,
-        }
-
-    }
+    
 }
