@@ -18,7 +18,7 @@ export const Satelite = ({navigation}) => {
         {
             id: 0,
             nome: "Picareta",
-            valor: Math.round(10 * Math.pow(stats.values.upgrades[0].quantidade, 1.2)),
+            valor: Math.round(config.prices[0].base * Math.pow(stats.values.upgrades[0].quantidade, config.prices[0].rate)),
             descricao: 'MD por clique: +1',
             mod: {
                 type: 'moondust_per_click',
@@ -28,7 +28,7 @@ export const Satelite = ({navigation}) => {
         {
             id: 1,
             nome: "Drone",
-            valor: Math.round(50 * Math.pow(stats.values.upgrades[1].quantidade, 0.5)),
+            valor: Math.round(config.prices[1].base * Math.pow(stats.values.upgrades[1].quantidade, config.prices[1].rate)),
             descricao: 'MD por segundo: +1',
             mod: {
                 type: 'moondust_per_second',

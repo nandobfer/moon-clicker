@@ -14,4 +14,15 @@ export const config = {
             },
         },
     },
+    prices: {
+        0: {
+            base: 10,
+            rate: 1.2,
+        },
+        1: {
+            base: 50,
+            rate: 0.9,
+        },
+
+    }
 }
