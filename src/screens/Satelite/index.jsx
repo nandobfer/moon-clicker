@@ -5,6 +5,7 @@ import { styles } from './style';
 import { COLORS } from '../../colors';
 import { StatusBar } from '../../components/StatusBar';
 import { config } from '../../config';
+import { useNumberFormatter } from '../../hooks/useNumberFormatter';
 
 
 export const Satelite = ({navigation}) => {
@@ -91,7 +92,7 @@ export const Satelite = ({navigation}) => {
                                 <Text style={styles.text}>{item.descricao}</Text>
                             </View>
                             <View style={[styles.cost_container, {backgroundColor: moondust >= item.valor ? COLORS.correct : COLORS.insuficiente}]}>
-                                <Text style={styles.cost_text}>{item.valor}</Text>
+                                <Text style={styles.cost_text}>{useNumberFormatter(item.valor, 2)}</Text>
                             </View>
                             <TouchableOpacity disabled={moondust < item.valor} style={[styles.upgrade_buy_container, {opacity: moondust < item.valor ? 0.3 : 1}]} onPress={() => onBuy(item)}>
                                 <Text style={styles.buy_text}>Comprar</Text>
