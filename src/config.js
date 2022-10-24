@@ -18,6 +18,10 @@ export const config = {
                 nome: "Estação de energia",
                 quantidade: 1,
             },
+            3: {
+                nome: "Braços cibernéticos",
+                quantidade: 1,
+            }
         },
     },
     prices: {
@@ -31,6 +35,10 @@ export const config = {
         },
         2: {
             base: 10000,
+            rate: 2,
+        },
+        3: {
+            base: 5000,
             rate: 2,
         }
 

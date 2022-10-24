@@ -45,6 +45,16 @@ export const Satelite = ({navigation}) => {
                 value: 100,
             }
         },
+        {
+            id: 3,
+            nome: "Braços cibernéticos",
+            valor: Math.round(config.prices[3].base * Math.pow(stats.values.upgrades[3]?.quantidade ? stats.values.upgrades[3].quantidade : 1, config.prices[2].rate)),
+            descricao: 'MD por clique: x2',
+            mod: {
+                type: 'moondust_per_click_bonus',
+                value: 100,
+            }
+        },
     ]
 
     const onBuy = (upgrade) => {
