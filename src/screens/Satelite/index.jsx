@@ -87,7 +87,7 @@ export const Satelite = ({navigation}) => {
                     return (
                         <View key={item.nome} style={styles.upgrade_wrapper}>
                             <View style={styles.upgrade_container}>
-                                <Text style={[styles.title_text, styles.text]}>{item.nome} {stats.values.upgrades[item.id].quantidade > 1 ? `+${stats.values.upgrades[item.id].quantidade}` : null}</Text>
+                                <Text style={[styles.title_text, styles.text]}>{item.nome} {stats.values.upgrades[item.id].quantidade > 1 ? `+${stats.values.upgrades[item.id].quantidade-1}` : null}</Text>
                                 <Text style={styles.text}>{item.descricao}</Text>
                             </View>
                             <View style={[styles.cost_container, {backgroundColor: moondust >= item.valor ? COLORS.correct : COLORS.insuficiente}]}>
