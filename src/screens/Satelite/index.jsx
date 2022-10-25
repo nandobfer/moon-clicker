@@ -66,7 +66,7 @@ export const Satelite = ({navigation}) => {
                                 <Text style={styles.cost_text}>{useNumberFormatter(item.valor, 2)}</Text>
                             </View>
                             <TouchableOpacity disabled={moondust < item.valor} style={[styles.upgrade_buy_container, {opacity: moondust < item.valor ? 0.3 : 1}]} onPress={() => onBuy(item)}>
-                                <Text style={styles.buy_text}>Comprar</Text>
+                                <Text style={styles.buy_text}>{stats.values.upgrades[item.id] ? 'Aprimorar' : 'Comprar'}</Text>
                             </TouchableOpacity>
                         </View>
                     )
