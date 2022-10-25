@@ -4,66 +4,31 @@ export const useUpgrades = (stats) => {
         return price
     }
 
-    return [
-        {
-            id: 0,
-            nome: "Picareta",
-            valor: buildPrice(10, 1.2, 0),
-            descricao: 'MD por clique: +1',
+    const upgrades = []
+    let id = 0
+
+    const newUpgrade = (nome="Nome", valor=10, taxa=1, descricao="Descrição", mod='moondust_per_click', mod_value=1) => {
+        upgrades.push({
+            id: id,
+            nome: nome,
+            valor: buildPrice(valor, taxa, id),
+            descricao: descricao,
             mod: {
-                type: 'moondust_per_click',
-                value: 1,
-            }
-        },
-        {
-            id: 1,
-            nome: "Rover",
-            valor: buildPrice(50, 0.6, 1),
-            descricao: 'MD por segundo: +1',
-            mod: {
-                type: 'moondust_per_second',
-                value: 1,
-            }
-        },
-        {
-            id: 2,
-            nome: "Estação de energia",
-            valor: buildPrice(10000, 0.9, 2),
-            descricao: 'MD por segundo: x2',
-            mod: {
-                type: 'moondust_per_second_bonus',
-                value: 100,
-            }
-        },
-        {
-            id: 3,
-            nome: "Motivação",
-            valor: buildPrice(5000, 2, 3),
-            descricao: 'MD por clique: x2',
-            mod: {
-                type: 'moondust_per_click_bonus',
-                value: 100,
-            }
-        },
-        {
-            id: 4,
-            nome: "Furadeira",
-            valor: buildPrice(1000, 1.2, 4),
-            descricao: 'MD por clique: +10',
-            mod: {
-                type: 'moondust_per_click',
-                value: 10,
-            }
-        },
-        {
-            id: 5,
-            nome: "Drone",
-            valor: buildPrice(2000, 0.9, 5),
-            descricao: 'MD por segundo: +10',
-            mod: {
-                type: 'moondust_per_second',
-                value: 10,
-            }
-        },
-    ]
+                type: mod,
+                value: mod_value
+            },
+        })
+        id++
+    }
+
+    newUpgrade(nome="Picareta", valor=10, taxa=1.2, descricao="MD por clique: +1", mod="moondust_per_click",mod_value=1)
+    newUpgrade(nome="Rover", valor=50, taxa=1.05, descricao="MD por segundo: +1", mod="moondust_per_second",mod_value=1)
+    newUpgrade(nome="Estação de energia", valor=10000, taxa=1.3, descricao="MD por segundo: +100%", mod="moondust_per_second_bonus",mod_value=100)
+    newUpgrade(nome="Motivação", valor=5000, taxa=1.5, descricao="MD por clique: +100%", mod="moondust_per_click_bonus",mod_value=100)
+    newUpgrade(nome="Furadeira", valor=1000, taxa=1.5, descricao="MD por clique: +10", mod="moondust_per_click",mod_value=10)
+    newUpgrade(nome="Drone", valor=2000, taxa=1.1, descricao="MD por segundo: +10", mod="moondust_per_second",mod_value=10)
+    newUpgrade(nome="Cachorrobô", valor=100000, taxa=1.3, descricao="MD por segundo: +100", mod="moondust_per_second",mod_value=100)
+    newUpgrade(nome="Retro Escavadeira", valor=30000, taxa=1.7, descricao="MD por clique: +100", mod="moondust_per_click",mod_value=100)
+    
+    return upgrades
 }
