@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
     upgrade_buy_container: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.buy,
+        backgroundColor: COLORS.secondary,
         width: 29*vw,
 
     },
