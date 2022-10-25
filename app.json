@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "clicker-game",
+    "name": "Moon Clicker",
     "slug": "clicker-game",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -18,14 +18,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nandobfer.moonclicker"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.nandobfer.clickergame"
+      "package": "com.nandobfer.moonclicker"
     },
     "web": {
       "favicon": "./assets/favicon.png"
