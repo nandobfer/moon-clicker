@@ -21,6 +21,8 @@ export const useUpgrades = (stats) => {
         id++
     }
 
+    // to do: atualizar valor da modificação após os bonus 
+
     newUpgrade(nome="Picareta", valor=10, taxa=1.2, descricao="MD por clique: +1", mod="moondust_per_click",mod_value=1)
     newUpgrade(nome="Rover", valor=50, taxa=1.05, descricao="MD por segundo: +1", mod="moondust_per_second",mod_value=1)
     newUpgrade(nome="Estação de energia", valor=10000, taxa=2, descricao="MD por segundo: x2", mod="moondust_per_second_multiplier",mod_value=2)

@@ -1,6 +1,8 @@
 import { useCallback, useEffect } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
+import useAppState from 'react-native-appstate-hook';
 import { StatusBar } from '../../components/StatusBar';
+import { useIdle } from '../../hooks/useIdle';
 import useInterval from '../../hooks/useInterval';
 import { useMoondust } from '../../hooks/useMoondust';
 import { useStats } from '../../hooks/useStats';
@@ -14,6 +16,29 @@ export const Home = ({ navigation }) => {
     const moondust = useMoondust();
     const localStorage = useStorage();
 
+    const idle = useIdle();
+    const { appState } = useAppState({
+        // onChange: (newAppState) => console.warn('App state changed to ', newAppState),
+        // onForeground: () => console.log('foreground'),
+        // onBackground: () => console.log('oi'),
+    });
+
+    useEffect(() => {
+        if (appState == 'background') {
+            localStorage.setData({...stats.values, exited: idle.onExit()})
+        }
+        if (appState == 'active') {
+            localStorage.getData()
+            .then(data => {
+                if (data) {
+                    idle.onEnter(data.exited, moonPassive)
+                }
+
+            })
+            
+        }
+    }, [appState])
+
     useEffect(() => {
         localStorage.getData()
         .then(data => {
@@ -26,15 +51,15 @@ export const Home = ({ navigation }) => {
     }, [open])
 
     const moonClick = useCallback(() => {
-        let new_moondust = stats.values.moondust + moondust.onClick(stats);
+        let new_moondust = stats.values.moondust + (moondust.onClick(stats));
 
         const new_stats = {...stats.values, moondust: new_moondust}
         stats.setValues(new_stats);
         localStorage.setData(new_stats);
     }, [stats])
 
-    const moonPassive = useCallback(() => {
-        let new_moondust = stats.values.moondust + moondust.perSecond(stats)
+    const moonPassive = useCallback((multiplier = 1) => {
+        let new_moondust = stats.values.moondust + (moondust.perSecond(stats) * multiplier)
 
         const new_stats = {...stats.values, moondust: new_moondust}
         stats.setValues(new_stats);
