@@ -3,6 +3,7 @@ import { Text, Touchable, TouchableOpacity, city, View } from 'react-native';
 import { StatusBar } from '../../components/StatusBar';
 import { config } from '../../config';
 import useInterval from '../../hooks/useInterval';
+import { useMoondust } from '../../hooks/useMoondust';
 import { useStats } from '../../hooks/useStats';
 import { useStorage } from '../../hooks/useStorage';
 import { styles } from './style';
@@ -16,28 +17,25 @@ export const Home = ({ navigation }) => {
     const [loading, setLoading] = useState(true);
     const stats = useStats();
 
-    const moondust = stats.values.moondust;
-    const moondust_per_click = stats.values.moondust_per_click;
-    const moondust_per_second = stats.values.moondust_per_second;
+    const moondust = useMoondust();
     const localStorage = useStorage();
 
     const moonClick = () => {
-        const new_stats = {...stats.values, moondust: moondust + (moondust_per_click * (stats.values.moondust_per_click_bonus / 100))};
+        let new_moondust = stats.values.moondust + moondust.onClick(stats);
+
+        const new_stats = {...stats.values, moondust: new_moondust}
         stats.setValues(new_stats);
         localStorage.setData(new_stats);
 
     }
 
     const moonPassive = () => {
-        const new_stats = {...stats.values, moondust: moondust + (moondust_per_second * (stats.values.moondust_per_second_bonus / 100))};
+        let new_moondust = stats.values.moondust + moondust.perSecond(stats)
+
+        const new_stats = {...stats.values, moondust: new_moondust}
         stats.setValues(new_stats);
         localStorage.setData(new_stats);
-        // console.log(stats.values.moondust_per_second_multiplier);
     }
-
-    // useEffect(() => {
-    //     console.log(stats);
-    // }, [stats])
 
     useEffect(() => {
         localStorage.getData()
