@@ -1,4 +1,7 @@
 export const useMoondust = () => {
+    const addBonus = (value, bonus) => value * bonus / 100
+    const multiplyRate = (value, rate) => value * (rate||1)
+    
     const onClick = (stats) => {
         let moondust_per_click = stats.values.moondust_per_click
 
@@ -18,9 +21,6 @@ export const useMoondust = () => {
 
         return moondust_per_second
     }
-
-    const addBonus = (value, bonus) => value * bonus / 100
-    const multiplyRate = (value, rate) => value * (rate||1)
 
     return {onClick, perSecond}
 }
