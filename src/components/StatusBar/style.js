@@ -4,6 +4,9 @@ import { COLORS } from '../../colors';
 const vw = Dimensions.get('window').width / 100;
 
 export const styles = StyleSheet.create({
+    main_container: {
+        alignItems: 'center',
+    },
     top_container: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',

@@ -7,18 +7,21 @@ export const StatusBar = ({stats}) => {
     const moondust = useMoondust()
 
     return (
-        <View style={styles.top_container}>
-            <View style={styles.stats_container}>
-                <Text style={styles.text}>Por clique</Text>
-                <Text style={styles.text}>{useNumberFormatter(moondust.onClick(stats), 2)} / c</Text>
+        <View style={styles.main_container}>
+            <View style={styles.top_container}>
+                <View style={styles.stats_container}>
+                    <Text style={styles.text}>Por clique</Text>
+                    <Text style={styles.text}>{useNumberFormatter(moondust.onClick(stats), 2)} / c</Text>
+                </View>
+                <View style={styles.moondust_container}>
+                    <Text style={styles.moondust_text}>{useNumberFormatter(stats.values.moondust, 2)}</Text>
+                </View>
+                <View style={styles.stats_container}>
+                    <Text style={styles.text}>Por segundo</Text>
+                    <Text style={styles.text}>{useNumberFormatter(moondust.perSecond(stats), 2)} / s</Text>
+                </View>
             </View>
-            <View style={styles.moondust_container}>
-                <Text style={styles.moondust_text}>{useNumberFormatter(stats.values.moondust, 2)}</Text>
-            </View>
-            <View style={styles.stats_container}>
-                <Text style={styles.text}>Por segundo</Text>
-                <Text style={styles.text}>{useNumberFormatter(moondust.perSecond(stats), 2)} / s</Text>
-            </View>
+            <Text>{stats.values.level}</Text>
         </View>
     )
 }

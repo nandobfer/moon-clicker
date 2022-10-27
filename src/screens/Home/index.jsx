@@ -2,6 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import useAppState from 'react-native-appstate-hook';
 import { StatusBar } from '../../components/StatusBar';
+import { useExperience } from '../../hooks/useExperience';
 import { useIdle } from '../../hooks/useIdle';
 import useInterval from '../../hooks/useInterval';
 import { useMoondust } from '../../hooks/useMoondust';
@@ -46,21 +47,30 @@ export const Home = ({ navigation }) => {
     }, [open])
 
     const moonClick = useCallback(() => {
-        let new_moondust = stats.values.moondust + (moondust.onClick(stats));
+        const new_moondust = stats.values.moondust + (moondust.onClick(stats));
 
-        const new_stats = {...stats.values, moondust: new_moondust}
+        const new_stats = {...stats.values, moondust: new_moondust, exp: stats.values.exp + moondust.onClick(stats)}
         stats.setValues(new_stats);
         localStorage.setData(new_stats);
     }, [stats])
 
     const moonPassive = useCallback((multiplier = 1) => {
-        let new_moondust = stats.values.moondust + (moondust.perSecond(stats) * multiplier)
+        const new_moondust = stats.values.moondust + (moondust.perSecond(stats) * multiplier)
 
         const new_stats = {...stats.values, moondust: new_moondust}
         stats.setValues(new_stats);
         localStorage.setData(new_stats);
     }, [stats])
     useInterval(moonPassive, 1000);
+
+    useEffect(() => {
+        const level = useExperience(stats)
+        if (level != stats.values.level) {
+            const new_stats = {...stats.values, level: level}
+            stats.setValues(new_stats);
+            localStorage.setData(new_stats);
+        }
+    }, [stats.values.exp])
 
     return (
         <View style={styles.background}>

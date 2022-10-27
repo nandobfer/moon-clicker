@@ -8,6 +8,8 @@ export const config = {
         moondust_per_second_bonus: 100,
         moondust_per_second_multiplier: 0,
         moondust_rate: 1,
+        exp: 0,
+        level: 1,
         upgrades: {  },
     },
     
