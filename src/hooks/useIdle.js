@@ -9,7 +9,7 @@ export const useIdle = () => {
         const seconds = Math.round((now - exited) / 1000)
         console.log(now)
         console.log(`idle: ${seconds}`)
-        moonPassive(seconds)
+        moonPassive(seconds/2)
     }
 
     return { onExit, onEnter }

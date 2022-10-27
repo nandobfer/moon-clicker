@@ -17,12 +17,7 @@ export const Home = ({ navigation }) => {
     const localStorage = useStorage();
 
     const idle = useIdle();
-    const { appState } = useAppState({
-        // onChange: (newAppState) => console.warn('App state changed to ', newAppState),
-        // onForeground: () => console.log('foreground'),
-        // onBackground: () => console.log('oi'),
-    });
-
+    const { appState } = useAppState({});
     useEffect(() => {
         if (appState == 'background') {
             localStorage.setData({...stats.values, exited: idle.onExit()})
