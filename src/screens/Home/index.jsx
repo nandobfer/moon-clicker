@@ -1,41 +1,18 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Text, Touchable, TouchableOpacity, city, View } from 'react-native';
+import { useCallback, useEffect } from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { StatusBar } from '../../components/StatusBar';
-import { config } from '../../config';
 import useInterval from '../../hooks/useInterval';
 import { useMoondust } from '../../hooks/useMoondust';
 import { useStats } from '../../hooks/useStats';
 import { useStorage } from '../../hooks/useStorage';
 import { styles } from './style';
 
-const initial_stats = config.stats;
-
 export const Home = ({ navigation }) => {
-    
-    let reset = true;
     let open = false;
-    const [loading, setLoading] = useState(true);
     const stats = useStats();
 
     const moondust = useMoondust();
     const localStorage = useStorage();
-
-    const moonClick = () => {
-        let new_moondust = stats.values.moondust + moondust.onClick(stats);
-
-        const new_stats = {...stats.values, moondust: new_moondust}
-        stats.setValues(new_stats);
-        localStorage.setData(new_stats);
-
-    }
-
-    const moonPassive = () => {
-        let new_moondust = stats.values.moondust + moondust.perSecond(stats)
-
-        const new_stats = {...stats.values, moondust: new_moondust}
-        stats.setValues(new_stats);
-        localStorage.setData(new_stats);
-    }
 
     useEffect(() => {
         localStorage.getData()
@@ -48,6 +25,21 @@ export const Home = ({ navigation }) => {
         })
     }, [open])
 
+    const moonClick = useCallback(() => {
+        let new_moondust = stats.values.moondust + moondust.onClick(stats);
+
+        const new_stats = {...stats.values, moondust: new_moondust}
+        stats.setValues(new_stats);
+        localStorage.setData(new_stats);
+    }, [stats])
+
+    const moonPassive = useCallback(() => {
+        let new_moondust = stats.values.moondust + moondust.perSecond(stats)
+
+        const new_stats = {...stats.values, moondust: new_moondust}
+        stats.setValues(new_stats);
+        localStorage.setData(new_stats);
+    }, [stats])
     useInterval(moonPassive, 1000);
 
     return (

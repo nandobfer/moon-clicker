@@ -24,7 +24,3 @@ export const useMoondust = () => {
 
     return {onClick, perSecond}
 }
-// per_second: (stats) => {
-//     const moondust = stats.values.moondust + stats.values.moondust_per_second
-//     return moondust
-// }
